@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">Daily Expense</string>
-</resources>
+        <string name="title">Title</string>
+        <string name="amount">Amount (₹)</string>
+        <string name="category">Category</string>
+        <string name="notes">Notes (Optional)</string>
+        <string name="submit">Add Expense</string>
+        <string name="total_spent_today">Total Spent Today</string>
+        <string name="expense_added">Expense added successfully!</string>
+        <string name="please_fill_required_fields">Please fill all required fields</string>
+        <string name="staff">Staff</string>
+        <string name="travel">Travel</string>
+        <string name="food">Food</string>
+        <string name="utility">Utility</string>
+
+        <!-- Navigation -->
+        <string name="expenses">Expenses</string>
+        <string name="reports">Reports</string>
+        <string name="add_expense">Add Expense</string>
+
+        <!-- Expense List Screen -->
+        <string name="no_expenses">No expenses for this date</string>
+        <string name="by_category">By Category</string>
+        <string name="by_time">By Time</string>
+        <string name="delete">Delete</string>
+
+        <!-- Expense Report Screen -->
+        <string name="expense_report">Expense Report</string>
+        <string name="last_7_days">Last 7 Days</string>
+        <string name="total_spent">Total Spent</string>
+        <string name="daily_average">Daily Average</string>
+        <string name="export_report">Export Report</string>
+        <string name="daily_breakdown">Daily Breakdown</string>
+        <string name="category_breakdown">Category Breakdown</string>
+        <string name="insights">Insights</string>
+        <string name="highest_spending_category">Highest Spending Category</string>
+        <string name="lowest_spending_category">Lowest Spending Category</string>
+        <string name="per_day">per day</string>
+        <string name="of_total">of total</string>
+    </resources>
