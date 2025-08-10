@@ -17,7 +17,7 @@ With this tool, you’ll never lose track of an expense — whether it was in a 
 
 ---
 
-## ✨ Features
+## ✨  AI Implemated Features
 
 ### **1. Date Picker Integration**
 
