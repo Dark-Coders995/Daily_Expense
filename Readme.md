@@ -151,25 +151,3 @@ smart-daily-expense-tracker/
 ```
 
 ---
-
-## 📦 Future Enhancements
-
-* OCR-based expense entry from receipts.
-* AI-powered recurring expense detection.
-* Multi-currency support.
-* Export to Excel / PDF.
-* Cloud sync with Google Drive or Dropbox.
-
----
-
-## 📜 License
-
-MIT License — Free for personal and commercial use.
-
----
-
-This version of the README not only explains **how the date header works dynamically** but also gives **full module context** so a dev or business owner can understand the entire setup in one place.
-
----
-
-If you want, I can also **add a visual flow diagram** to show how the date picker updates the header and the filtered expenses list. That would make the README even more engaging.
