@@ -1,153 +1,147 @@
-Alright — here’s your **updated full README** for the **📊 Smart Daily Expense Tracker** module, incorporating the **date-picker-aware "Total Spent" header** logic and other module details in a clean, dev-friendly way.
+# Smart Daily Expense Tracker 📊💸
+
+A **full-featured Expense Tracker module** built with **Jetpack Compose** following **MVVM architecture**, designed to help **small business owners** digitize and analyze their daily expenses effortlessly.
+
+This module bridges the gap of unrecorded or lost expenses (often on WhatsApp or paper) by providing an intuitive, intelligent, and offline-friendly way to **capture, view, analyze, and export expense data**.
 
 ---
 
-# 📊 Smart Daily Expense Tracker
+## ✨ Features
 
-**AI-First Assignment for Small Business Owners**
+### 1. Expense Entry Screen
 
----
+* Add new expense with:
 
-## 📌 Overview
+  * **Title** (text)
+  * **Amount (₹)** (validated: > 0)
+  * **Category** (Staff, Travel, Food, Utility – mocked list)
+  * **Notes** (optional, max 100 chars)
+  * **Receipt Image** (upload/mock)
+* Real-time **“Total Spent Today”** shown at the top
+* **Animations** + Toast on successful entry
+* **Duplicate detection** (bonus)
 
-The **Smart Daily Expense Tracker** is a **full-featured Jetpack Compose module** that empowers **small business owners** to easily record, analyze, and export daily expenses.
-It’s designed with an **AI-first approach** — meaning **minimal manual entry** and **automatic intelligent insights** into cash flow patterns.
+### 2. Expense List Screen
 
-With this tool, you’ll never lose track of an expense — whether it was in a WhatsApp chat, a paper slip, or just in memory.
+* View expenses:
 
----
+  * **Today (default)**
+  * **Previous dates** (calendar/filter)
+* Group expenses by:
 
-## ✨  AI Implemated Features
+  * **Category**
+  * **Time** (toggle)
+* Shows:
 
-### **1. Date Picker Integration**
+  * **Total count**
+  * **Total amount**
+  * **Empty state UI**
 
-* **Dynamic Date Selection**: Choose any date using a date picker.
-* **Automatic Filtering**: Expenses list is automatically filtered by the selected date.
-* **Smart Header Text**:
+### 3. Expense Report Screen
 
-  * Shows **"Total Spent Today"** if the selected date is today.
-  * Shows **"Total Spent on \[Date]"** if it’s any other date (e.g., `Total Spent on 10 August 2025`).
+* **7-day mock report** with:
 
----
+  * Daily totals
+  * Category-wise totals
+  * Bar/Line chart (mocked with Compose UI)
+* **Export options**:
 
-### **2. Grouped Expense Display**
-
-* **Flexible Grouping**:
-
-  * Group expenses **by category** (e.g., Food, Utilities, Office Supplies).
-  * Group expenses **by time** (e.g., Morning, Afternoon, Evening).
-* **Auto-Calculated Group Totals**:
-
-  * Each group header displays its summed total.
-* **Clean UI in LazyColumn**:
-
-  * Group headers (CategoryHeader or TimeHeader).
-  * Expense items nested under each group.
-
----
-
-## 🧠 AI Usage
-
-The AI-first design helps in:
-
-* **Auto-categorizing expenses** from textual descriptions.
-* **Pattern detection** for recurring expenses.
-* **Predictive budget alerts** when approaching daily or monthly spending limits.
+  * Simulated **PDF/CSV export**
+  * Trigger **Share intent**
 
 ---
 
-## 🛠 Implementation Details
+## 🛠️ Architecture & Tech Stack
 
-### **Updated Header Composable**
+* **UI Layer:** Jetpack Compose (Material 3, animations)
+* **Architecture:** MVVM (Model-View-ViewModel)
+* **State Management:** StateFlow 
+* **Navigation:** Jetpack Navigation (multi-screen flow)
+* **Data Layer:**
+* 
+  * Room / DataStore 
+* **Charts:** Mocked Compose visualizations
+* **Theme:** Light/Dark mode support
 
-The header text changes dynamically depending on whether the selected date is today:
+---
 
-```kotlin
-@Composable
-fun ExpenseHeader(
-    totalSpentToday: Double,
-    selectedDate: LocalDate
-) {
-    val formatter = remember { DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.getDefault()) }
-    val today = remember { LocalDate.now() }
+## 🚀 Bonus Features Implemented
 
-    val dateText = if (selectedDate == today) {
-        stringResource(R.string.total_spent_today)
-    } else {
-        "Total Spent on ${selectedDate.format(formatter)}"
-    }
+* ✅ Theme switcher (Light/Dark mode)
+* ✅ Local persistence (Room/Datastore)
+* ✅ Entry animations
+* ✅ Duplicate detection
+* ✅ Input validation (amount > 0, title non-empty)
+* ✅ Offline-first mock sync
+* ✅ Reusable UI components
 
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = dateText,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "₹${String.format(Locale.US, "%.2f", totalSpentToday)}",
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-        }
-    }
-}
+---
+
+## 📂 Project Structure
+
+```
+com.smart.expensetracker
+│
+|── components         # Components / Widgets Required
+├── data/              # Room/Datastore
+├── di/                # Dependency Injection Using Dagger-Hilt
+├── model/             # Expense models
+├── repository/        # Repositrory for App
+├── ui/                # Compose UI screens
+│   ├── screens/
+├── viewmodel/         # ViewModel for  screen
+├── util/              # Some utils functions
+└── navigation/        # Navigation graph
 ```
 
 ---
 
-### **Usage in Screen**
+## 📸 Screenshots (Mock)
 
-```kotlin
-ExpenseHeader(
-    totalSpentToday = totalSpentToday.doubleValue,
-    selectedDate = viewModel.selectedDate.value
-)
-```
-
-* `selectedDate` comes from the ViewModel’s `onDateSelected(localDate)` method.
-* `totalSpentToday` is the calculated sum for that date’s expenses.
+1. **Expense Entry Screen** – ![Entry Screen](screenshots/Entry_Screen.jpg)
+2. **Daily Expense List Screen** – ![ExpenseList Screen](screenshots/Daily_Expense.jpg)
+3. **Expense Report Screen** – ![Expense Screen](screenshots/Expense_Report.jpg)
 
 ---
 
-### **ViewModel Date Handling**
+## 🔧 Setup & Installation
 
-```kotlin
-fun onDateSelected(localDate: LocalDate) {
-    _selectedDate.value = localDate
-    filterExpensesByDate(localDate)
-}
-```
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/Dark-Coders995/Daily_Expense.git
+   cd smart-expense-tracker
+   ```
+2. Open in **Android Studio (Arctic Fox or newer)**
+3. Build & Run on emulator/device
+
+---
+
+## 📤 Export & Share
+
+* Mock **PDF/CSV export (In Progress )**
 
 ---
 
-## 📂 Module Structure
+## 🤖 AI Assistance in Development
 
-```
-smart-daily-expense-tracker/
-│── ui/
-│   ├── ExpenseHeader.kt      # Header with dynamic date logic
-│   ├── ExpenseList.kt        # LazyColumn with grouping support
-│   ├── GroupHeaders.kt       # CategoryHeader & TimeHeader
-│── viewmodel/
-│   ├── ExpenseViewModel.kt   # Date selection, filtering, and total calculation
-│── model/
-│   ├── Expense.kt            # Expense data model
-│── resources/
-│   ├── strings.xml           # UI text resources
-│   ├── themes.xml
-```
+AI tools were leveraged to:
+
+* Generate boilerplate Compose UI components
+* Create mock chart data and sample exports
+* Draft project documentation (this README ✅)
 
 ---
+
+## 🏗️ Future Improvements
+
+* Real backend sync (Firebase/REST API)
+* OCR for automatic receipt scanning
+* Advanced analytics (monthly trends, forecasting)
+* Multi-user/team expense tracking
+
+---
+
+## 📜 License
+
+MIT License © 2025 Ayush Gupta
